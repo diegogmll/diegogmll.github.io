@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+      <script type="text/javascript" src="js/jquery/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript" src="js/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+      <script type="text/javascript" src="jspdf.js"></script>
+  
+      <script type="text/javascript" src="jspdf.plugin.addimage.js"></script>
+  
+      <script type="text/javascript" src="jspdf.plugin.standard_fonts_metrics.js"></script>
+      <script type="text/javascript" src="jspdf.plugin.split_text_to_size.js"></script>
+      <script type="text/javascript" src="jspdf.plugin.from_html.js"></script>
+    <style>
+        .div1{
+            padding: 20px;
+            border: 1px solid black;
+            
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        iframe{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            
+        }
+        form{
+            position: relative;
+        }
+        /*.container{
+            width: 24.99999%;
+            padding: 20px;
+            border: 1px solid black;
+        }
+       /* Estilos para pantallas pequeñas (móviles) */
+        @media only screen and (max-width: 600px) {
+            .container {
+                position: relative;
+                width: 100%; /* Ancho completo para pantallas pequeñas */
+                height: 80vh;
+                padding: 20px;
+                border: 1px solid black;
+                box-shadow: rgb(168, 219, 237) 0.3em 0.3em 0.5em, rgb(168, 219, 237)  -0.3em -0.3em 0.5em;
+            }
+            iframe{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55vh;
+        }
+        }
+
+        /* Estilos para tabletas */
+        @media only screen and (min-width: 601px) and (max-width: 1024px) {
+            /* Estilos específicos para tabletas */
+            .container{
+                position: relative;
+                width: 100vw;
+                height: 80vh;
+                padding: 20px;
+                border: 1px solid black;
+                box-shadow: rgb(168, 219, 237) 0.3em 0.3em 0.5em, rgb(168, 219, 237)  -0.3em -0.3em 0.5em;
+            }
+            iframe{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55vh;
+        }
+            
+        }
+
+        /* Estilos para pantallas grandes (escritorio) */
+        @media only screen and (min-width: 1025px) {
+            /* Estilos específicos para pantallas grandes */
+            .container{
+                position: relative;
+                width: 100vw;
+                height: 80vh;
+                padding: 20px;
+                border: 1px solid black;
+                box-shadow: rgb(168, 219, 237) 0.3em 0.3em 0.5em, rgb(168, 219, 237)  -0.3em -0.3em 0.5em;
+                }
+            iframe{
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 55vh;
+        }
+        }
+    </style>
+    
+</head>
+<body>
+    <script>
+        var letras=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','Ñ','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        var codigos=['I','C','Ñ','H','O','M','T','L','B','S','A','R','Q','P','E','W','J','F','V','U','K','X','D','Y','N','Z','G'];
+        function transformar() {
+            var cont=0;
+            var palabra=document.forms[0].palabra.value;
+            palabra=palabra.replace(/\s+/g, '');
+            var arregloPalabra=palabra.split('');
+            var longitud=palabra.length;
+            for(i=0; i<longitud; i++){
+                if(arregloPalabra[i]==1 || arregloPalabra[i]==2 || arregloPalabra[i]==3 || arregloPalabra[i]==4 || arregloPalabra[i]==5 || arregloPalabra[i]==6 || arregloPalabra[i]==7 ||arregloPalabra[i]==8||arregloPalabra[i]==9||arregloPalabra[i]==0 ){
+                    cont++;
+                }
+            }
+            if(cont>0){
+                alert('!!! Tu palabra solo puede contener letras, intenta de nuevo');
+                return true;
+            }
+            else{
+                if(longitud>100){
+                    alert('!!! Tu palabra no puede contener mas de 100 caracteres, intenta de nuevo');
+                    return true;
+                }else{
+                    for(i=0; i<longitud; i++){
+                for(j=0; j<27; j++){
+                    if(arregloPalabra[i]==letras[j]){
+                     arregloPalabra[i]=codigos[j];
+                     break;
+                   }
+                }
+                
+            }
+            palabra2=arregloPalabra.join('');
+            alert('Palabra original: '+palabra+'\nPalabra codificada: '+palabra2);
+            var doc = new jsPDF();
+            doc.setFontSize(22);
+            doc.text(20, 20, 'Palabra original: '+palabra);
+            doc.text(20, 30, 'Palabra codificada: '+palabra2);
+
+            var string = doc.output('datauristring');
+            $('iframe').attr('src', string);
+
+            return false;
+                }
+                
+            }
+           
+        }
+    </script>
+    <center><h1 style="color: rgb(67, 112, 114);">EXÁMEN PRÁCTICO 3°P</h1><br>
+        <h2>185122. Guerrero Malpica Diego</h2><br>
+    <div class="container"><form id="myform" onsubmit="return transformar();">
+        <input id="palabra" name="palabra" type="text" placeholder="Tu palabra aqui" pattern="[A-Za-z\w\s]+"><br><br>
+        <input type="submit" class="btn btn-primary" >
+    </form><br>
+    <iframe frameborder="0" width="500" height="400" ></iframe></div>
+</center>
+</body>
+    
+</html>
