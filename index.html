@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cuerpo{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            left: 0;
+            top: 0;
+        }
+        .izquierda{
+            background-color: rgb(218, 235, 249);
+            height: 48em;
+            width: 60%;
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+           
+        }
+        .span1{
+            color: blue;
+            font-size: 1.7em;
+            font-weight: bold;
+        }
+        .derecha1{
+            background-color: rgb(129, 169, 255);
+            height: 48em;
+            width: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            top: 0;
+            left: 0;
+            box-shadow: rgb(0, 0, 0) -0.3em 0em 3em;
+        }
+        .divp{
+            rotate: 90deg;
+            font-weight: bold;
+            font-size: 2em;
+            width: 490px;
+            color: white;
+            background-color: transparent;
+            border:rgb(73, 130, 253) ;
+        }
+        .derecha2{
+            background-color: rgb(73, 130, 253);
+            height: 48em;
+            width: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            top: 0;
+            left: 0;
+            box-shadow: rgb(0, 0, 0) -0.1em 0em 3em;
+        }
+        .derecha3{
+            background-color: rgb(0, 81, 255);
+            height: 48em;
+            width: 15%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            top: 0;
+            left: 0;
+            box-shadow: rgb(0, 0, 0) -0.1em 0em 3em;
+        }
+        .derecha1:hover{
+            border: 5px solid white;
+        }
+        .derecha2:hover{
+            border: 5px solid white;
+        }
+        .derecha3:hover{
+            border: 5px solid white;
+        }
+        a{
+            color: white;
+            text-decoration: none;
+        }
+        button:hover{
+            color: white;
+            text-decoration: underline;
+            text-shadow: rgb(255, 255, 255) -0.1em 0em 1.5em;;
+        }
+        
+    </style>
+    <script>
+        function parcial1(){
+            window.location.href = 'https://portaweb1renaissance.000webhostapp.com/parcial1/index1.html';
+        }
+        function parcial2(){
+            window.location.href = 'https://portaweb1renaissance.000webhostapp.com/parcial2/index3.html';
+        }
+        function parcial3(){
+            window.location.href = 'https://portaweb1renaissance.000webhostapp.com/parcial2/tercerparcial/menu.html';
+        }
+
+    </script>
+    </head>
+<body style="font-family: Verdana, Geneva, Tahoma, sans-serif;">
+    <div class="cuerpo">
+        <div class="izquierda">
+            <div style="font-size: 2.5em;"><strong><span class="span1">| </span>PORTAFOLIO WEB</strong></div>
+            <div style="margin-top: 1em; font-size: 19px;">&emsp;&emsp;&emsp;&nbsp;Guerrero Malpica Diego</div>
+            <div style="margin-top: 1em; font-size: 19px;">&emsp;&emsp;&emsp;&nbsp;185122</div>
+        </div>
+        <div class="derecha1"><button class="divp" onclick="return parcial1();">1° PARCIAL</button> </div>
+        <div class="derecha2"><button class="divp" onclick="return parcial2();">2° PARCIAL</button></div>
+        <div class="derecha3"><button class="divp" onclick="return parcial3();">3° PARCIAL</button></div>
+    </div>
+</body>
+</html>
